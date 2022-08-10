@@ -162,23 +162,19 @@ A common file structure **SHOULD** be following:
 - The name **MUST** in `kebab-case`.
 - You **MUST NOT** use abbreviation in a filename.
 
-<a name="typescript"></a>
-
-## Typescript
-
----
-
-//TODO
-
 <a name="utilities-hooks"></a>
 
-## Utilities & Hooks
+## Hooks
 
 ---
 
-//TODO
-
-<a name="components"></a>
+- A hook **MUST** be named in `camelCase` and starts with *use* (e.g. useWindowResize.ts)
+- You **SHOULD** create a hook carefully to avoid over-design.
+    - If a logic is user only once in a single file, it **MAY** be defined locally rather than create a hook;
+    - if there are multiple hooks share some values or refer to a same module, you **MAY** merge them to a single
+      hook. (e.g. merge *useFetchProduct*, *useUpdateProduct*, *useDeleteProduct* to *useProduct* with
+      functions `fetchProduct()`, `updateProduct()`and `deleteProduct()`)
+      <a name="components"></a>
 
 ## Components
 
@@ -209,7 +205,6 @@ A common file structure **SHOULD** be following:
 ---
 
 //TODO
-
 
 <a name="localisation"></a>
 
