@@ -117,8 +117,9 @@ Pros:
 ### Naming Convention
 
 - Environment variables in *.env* file **MUST** be named in `SCREAM_SNAKE_CASE` and prefixed with `VITE_`.
-- Config file names **MUST** end with *.config.ts*.
+- Config file names **MUST** be named in `kebab-case` and end with *.config.ts*.
 - Config variables **SHOULD** be named in `snake_case`.
+- You **MUST NOT** use abbreviation to name files.
 
 ### Sample:
 
@@ -127,6 +128,98 @@ See [Vue.js sample project](https://github.com/lifebyte-systems/lifebyte-web-vue
 <a name="assets"></a>
 
 ## Assets
+
+---
+
+### What's In It
+
+*/asset* path keeps globally shared static data , including images, styling files (e.g. vendor styles,
+custom styles), shared documents (e.g. privacy policy PDF document), static data (e.g. country list JSON file), etc.
+
+You **MUST** group assets files by type or by purpose.
+
+A common file structure **SHOULD** be following:
+
+```text
+|-- /assets
+    |-- /images
+        |-- /backgrounds
+        |-- /icons
+    |-- /styles
+        |-- style-1.css
+        |-- style-2.css
+    |-- /documents
+        |-- document-1.pdf
+        |-- document-2.xlsx
+    |-- /data
+        |-- static-data-1.json
+        |-- static-data-2.js
+```
+
+### Naming Convention
+
+- An assets file **MUST** have a meaningful name that well describes its content.
+- The name **MUST** in `kebab-case`.
+- You **MUST NOT** use abbreviation in a filename.
+
+<a name="typescript"></a>
+
+## Typescript
+
+---
+
+//TODO
+
+<a name="utilities-hooks"></a>
+
+## Utilities & Hooks
+
+---
+
+//TODO
+
+<a name="components"></a>
+
+## Components
+
+---
+
+//TODO
+
+<a name="state-management"></a>
+
+## State Management
+
+---
+
+//TODO
+
+<a name="router"></a>
+
+## Router
+
+---
+
+//TODO
+
+<a name="requests-apis"></a>
+
+## Requests & APIs
+
+---
+
+//TODO
+
+
+<a name="localisation"></a>
+
+## Localisation
+
+---
+
+//TODO
+
+## Styling
 
 ---
 
