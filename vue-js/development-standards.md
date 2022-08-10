@@ -6,7 +6,7 @@
 [# Philosophy](#philosophy)  
 [# Design Pattern](#design-pattern)  
 [# Technology Stack](#technology-stack)  
-[# Project Initialisation](#project-initialisation)
+[# Project Initialisation](#project-initialisation)  
 [# Environment & Configurations](#environment--configurations)
 
 <a name="introduction"></a>
@@ -37,7 +37,7 @@ This article provides a set of development standards and rules to Vue.js develop
     over-configure.
 > - KISS (Keep it Simple, Stupid): Write code that is simple, readable, understandable and maintainable. Annotate
     complex code properly. Don't over-design.
-> - Chef's Recommendation: Don't DIY if there is a existing solution provided by experienced sponsors.
+> - Chef's Recommendation: Don't DIY if there is an existing solution provided by experienced sponsors.
 > - Official Advice: Give preference to solutions that are recommended officially.
 
 <a name="design-pattern"></a>
@@ -105,18 +105,24 @@ This obviously waste the time and generates a lot of duplicated code that is har
 For this reason, we create a config layer to process environment variables. In this layer, all environment values are
 processed, and a utility function `config()` is exposed for usage.
 
-You **MUST** user `config()` to get environment variables and configurations. You **MUST NOT** use `import.meta.env`
+You **MUST** use `config()` to get environment variables and configurations. You **MUST NOT** use `import.meta.env`
 anywhere in the project expect to */configs* file.
 
 Pros:
+
 - Clear declaration: `config()` for configurations, `import.meta.env` for determine on different running environments.
 - DRY: Process complex environment variables in config layer, avoid duplicated code.
 - Make code robust and flexible.
 
 ### Naming Convention
-- Environment variables in *.env* file **MUST** named in `SCREAM_SNAKE_CASE` and prefixed with `VITE_`.
+
+- Environment variables in *.env* file **MUST** be named in `SCREAM_SNAKE_CASE` and prefixed with `VITE_`.
 - Config file names **MUST** end with *.config.ts*.
 - Config variables **SHOULD** be named in `snake_case`.
+
+### Sample:
+
+See [Vue.js sample project](https://github.com/lifebyte-systems/lifebyte-web-vue-sample).
 
 <a name="assets"></a>
 
