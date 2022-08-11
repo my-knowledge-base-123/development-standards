@@ -6,7 +6,18 @@
 [# Philosophy](#-philosophy)  
 [# Rule Priorities](#-rule-priorities)  
 [# Design Pattern](#-design-pattern)  
-[# Technology Stack](#-technology-stack)
+[# Technology Stack](#-technology-stack)  
+[# Environment Variables and Configurations](#-environment-variables-and-configurations)  
+[# Routing](#-routing)  
+[# Eloquent ORM](#-eloquent-orm)  
+[# Database](#-database)
+[# Controllers](#-controllers)  
+[# Services](#-services)  
+[# Views](#-views)  
+[# Validation](#-validation)  
+[# Custom Artisan Commands](#-custom-artisan-commands)  
+[# Security](#-security)  
+[# Performance Optimisation](#-performance-optimisation)  
 
 ## # Introduction
 
@@ -43,11 +54,14 @@ In order to avoid misunderstanding, this article uses different "modal verbs" to
 
 ## # Design Pattern
 
-- MVC: Model-View-Controller Framework. You **SHOULD** make each controller as short and readable as possible. If a Laravel
+- MVC: Model-View-Controller Framework. You **SHOULD** make each controller as short and readable as possible. If a
+  Laravel
   project is too complex to keep controllers tidy, you **SHOULD** select one of following design patterns to refine
   controllers. You selection **MAY** depend on the complexity of the business logic.
-    - Repository Pattern (see more: [Laravel Repository Pattern](https://medium.com/@farhadmsyv/laravel-repository-pattern-861c2dd96a32))
-    - Service-Repository Patter (see more: [Laravel Service-Repository Pattern](https://dev.to/safbalili/implement-crud-with-laravel-service-repository-pattern-1dkl))
+    - Repository Pattern (see
+      more: [Laravel Repository Pattern](https://medium.com/@farhadmsyv/laravel-repository-pattern-861c2dd96a32))
+    - Service-Repository Patter (see
+      more: [Laravel Service-Repository Pattern](https://dev.to/safbalili/implement-crud-with-laravel-service-repository-pattern-1dkl))
 - Restful: Build project with standardised HTTP methods (GET, POST, PUT, DELETE, etc) and "resource-based concept".
 
 ## # Technology Stack
@@ -70,8 +84,112 @@ version conflict.
 
 ### ## Recommended Composer Packages
 
-- Permission: [Laravel Permission](https://github.com/spatie/laravel-permission)
-- Redis Client: [Predis](https://github.com/predis/predis)
+- Permission Management: [Laravel Permission](https://github.com/spatie/laravel-permission)
+- Redis Extension: [Predis](https://github.com/predis/predis)
 - Excel Imports and Exports: [Laravel Excel](https://laravel-excel.com/)
 - Development-level Debugging: [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar)
 - Redis Queue Monitor: [Laravel Horizon](https://laravel.com/docs/9.x/horizon)
+
+## # Environment Variables and Configurations
+
+- You **MUST** get/set configurations via `config()` helper function.
+- You **MUST** get/set environment via `config()` helper function.
+- You **MUST** not use `env()` helper function outside **.config* files under */configs*.
+
+Pros:
+
+- Use `config()` to control configurations, use `env()` to determine different running environment.
+- Performance can be improved via `php artisan cache:config`.
+- Make code robust and flexible.
+
+## # Routing
+
+### ## Routing Closure
+
+// TODO
+
+### ## Restful Router
+
+// TODO
+
+### ## Resource
+
+// TODO
+
+### ## Naming Convention
+
+// TODO
+
+## # Eloquent ORM
+
+### ## Models
+
+// TODO
+
+### ## Traits
+
+// TODO
+
+### ## Repositories
+
+// TODO
+
+## # Database
+
+### ## Migrations
+
+// TODO
+
+### ## Factories
+
+// TODO
+
+### ## Seeders
+
+// TODO
+
+## # Controllers
+
+### ## Naming Convention
+
+// TODO
+
+### ## Keep Tiny & Tidy
+
+// TODO
+
+## # Services
+
+// TODO
+
+## # Views
+
+## # Validation
+
+## # Custom Artisan Commands
+
+## # Security
+
+### ## DEBUG Mode
+
+// TODO
+
+### ## XXS
+
+// TODO
+
+### ## SQL Injection
+
+// TODO
+
+### ## Massive Assignment
+
+// TODO
+
+### ## CSRF Protection
+
+## # Performance Optimisation
+
+### # Avoid N + 1 Query Problem
+
+### # Caching
