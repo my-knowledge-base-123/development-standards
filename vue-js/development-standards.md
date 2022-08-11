@@ -13,8 +13,6 @@
 
 ## Introduction
 
----
-
 This article provides a set of development standards and rules to Vue.js developers, for the purpose of:
 
 - Productivity Improvement: Avoid the waste of "decision time".
@@ -29,8 +27,6 @@ This article provides a set of development standards and rules to Vue.js develop
 
 ## Philosophy
 
----
-
 > - DRY (Don't Repeat Yourself): Don't write duplicated logic. If a logic is used multiple times, it should be decoupled
     / refactored.
 > - COC (Convention Over Configuration): Give preference to methodologies that recommended by the framework. Don't
@@ -44,16 +40,12 @@ This article provides a set of development standards and rules to Vue.js develop
 
 ## Design Pattern
 
----
-
 - Modularisation: Design programs by modules. Group program by service logic or models.
 - Restful: Build project with standardised HTTP methods and "resource-based concept".
 
 <a name="rule-priorities"></a>
 
 ## Rule Priorities
-
----
 
 In order to avoid misunderstanding, this article uses different "modal verbs" to indicate the priorities of rules:
 
@@ -67,8 +59,6 @@ In order to avoid misunderstanding, this article uses different "modal verbs" to
 
 ## Technology Stack
 
----
-
 ### Version Selection
 
 You **SHOULD** select LTS version of tools and dependencies, or the latest version that has no conflict with other
@@ -81,8 +71,6 @@ version conflict.
 
 ## Project Initialisation
 
----
-
 See [Vue.js Project Initialisation Guide](https://github.com/lifebyte-systems/lifebyte-web-development-standards/blob/main/vue-js/project-initialisation-guide.md)
 .
 
@@ -91,8 +79,6 @@ See [Vue.js Project Initialisation Guide](https://github.com/lifebyte-systems/li
 <a name="environment-configurations"></a>
 
 ## Environment & Configurations
-
----
 
 ### Config Layer
 
@@ -129,8 +115,6 @@ See [Vue.js sample project](https://github.com/lifebyte-systems/lifebyte-web-vue
 
 ## Assets
 
----
-
 ### What's In It
 
 */asset* path keeps globally shared static data , including images, styling files (e.g. vendor styles,
@@ -166,8 +150,6 @@ A common file structure **SHOULD** be following:
 
 ## Hooks
 
----
-
 - A hook **MUST** be named in `camelCase` and starts with *use* (e.g. useWindowResize.ts)
 - You **SHOULD** create a hook carefully to avoid over-design.
     - If a logic is user only once in a single file, it **MAY** be defined locally rather than create a hook;
@@ -178,15 +160,11 @@ A common file structure **SHOULD** be following:
 
 ## Components
 
----
-
 //TODO
 
 <a name="state-management"></a>
 
 ## State Management
-
----
 
 //TODO
 
@@ -194,15 +172,11 @@ A common file structure **SHOULD** be following:
 
 ## Router
 
----
-
 //TODO
 
 <a name="requests-apis"></a>
 
 ## Requests & APIs
-
----
 
 //TODO
 
@@ -210,12 +184,8 @@ A common file structure **SHOULD** be following:
 
 ## Localisation
 
----
-
 //TODO
 
 ## Styling
-
----
 
 // TODO

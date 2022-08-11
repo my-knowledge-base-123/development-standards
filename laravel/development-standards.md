@@ -10,8 +10,6 @@
 
 ## # Introduction
 
----
-
 This article provides a set of development standards and rules to Laravel developers, for the purpose of:
 
 - Productivity Improvement: Avoid the waste of "decision time".
@@ -24,8 +22,6 @@ This article provides a set of development standards and rules to Laravel develo
 
 ## # Philosophy
 
----
-
 > - DRY (Don't Repeat Yourself): Don't write duplicated logic. If a logic is used multiple times, it should be decoupled
     / refactored.
 > - COC (Convention Over Configuration): Give preference to methodologies that recommended by the framework. Don't
@@ -37,14 +33,10 @@ This article provides a set of development standards and rules to Laravel develo
 
 ## # Design Pattern
 
----
-
 - MVC
 - Restful: Build project with standardised HTTP methods and "resource-based concept".
 
 ## # Rule Priorities
-
----
 
 In order to avoid misunderstanding, this article uses different "modal verbs" to indicate the priorities of rules:
 
@@ -55,8 +47,6 @@ In order to avoid misunderstanding, this article uses different "modal verbs" to
 > - MAY: Preferred; Not frequently used in this article.
 
 ## # Technology Stack
-
----
 
 ### # Version Selection
 
