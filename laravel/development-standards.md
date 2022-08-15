@@ -7,6 +7,7 @@
 [# Rule Priorities](#-rule-priorities)  
 [# Design Pattern](#-design-pattern)  
 [# Technology Stack](#-technology-stack)  
+[# Project Initialisation](#-project-initialisation)  
 [# Environment Variables and Configurations](#-environment-variables-and-configurations)  
 [# Routing](#-routing)  
 [# Eloquent ORM](#-eloquent-orm)  
@@ -17,7 +18,7 @@
 [# Validation](#-validation)  
 [# Custom Artisan Commands](#-custom-artisan-commands)  
 [# Security](#-security)  
-[# Performance Optimisation](#-performance-optimisation)  
+[# Performance Optimisation](#-performance-optimisation)
 
 ## # Introduction
 
@@ -57,7 +58,7 @@ In order to avoid misunderstanding, this article uses different "modal verbs" to
 - MVC: Model-View-Controller Framework. You **SHOULD** make each controller as short and readable as possible. If a
   Laravel
   project is too complex to keep controllers tidy, you **SHOULD** select one of following design patterns to refine
-  controllers. You selection **MAY** depend on the complexity of the business logic.
+  controllers. Your selection **MAY** depend on the complexity of the business logic.
     - Repository Pattern (see
       more: [Laravel Repository Pattern](https://medium.com/@farhadmsyv/laravel-repository-pattern-861c2dd96a32))
     - Service-Repository Patter (see
@@ -89,6 +90,15 @@ version conflict.
 - Excel Imports and Exports: [Laravel Excel](https://laravel-excel.com/)
 - Development-level Debugging: [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar)
 - Redis Queue Monitor: [Laravel Horizon](https://laravel.com/docs/9.x/horizon)
+
+## # Project Initialisation
+
+See [Laravel Project Initialisation Guide](https://github.com/lifebyte-systems/lifebyte-web-laravel-sample).
+
+- You **MUST** follow the guide in sample to initialise a new Laravel project.
+- You **MUST NOT** initialise a project via copy-pasting files from the sample project.
+- For ease of collaboration, you **MUST** develop projects in a uniformed docker container. The easiest way to achieve
+  it is to use [Laravel Sail](https://laravel.com/docs/9.x/sail).
 
 ## # Environment Variables and Configurations
 
