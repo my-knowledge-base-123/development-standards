@@ -9,7 +9,7 @@
 [# Technology Stack](#-technology-stack)  
 [# Project Initialisation](#-project-initialisation)  
 [# Environment Variables and Configurations](#-environment-variables-and-configurations)  
-[# Routing](#-routing)  
+[# Routers](#-routers)  
 [# Eloquent ORM](#-eloquent-orm)  
 [# Database](#-database)
 [# Controllers](#-controllers)  
@@ -112,23 +112,71 @@ Pros:
 - Performance can be improved via `php artisan cache:config`.
 - Make code robust and flexible.
 
-## # Routing
+## # Routers
 
 ### ## Routing Closure
 
-// TODO
+- You **MUST NOT** write routing closure in router files.
+- You **MUST** keep router clean and clear, and **MUST NOT** include business logic code.
 
-### ## Restful Router
+### ## Resource-based Routes
 
-// TODO
+- You **MUST** use Restful (resource-based) routes (
+  see [resource routing](https://laravel.com/docs/9.x/controllers#actions-handled-by-resource-controller)). A standard
+  sample of Restful routes:
 
-### ## Resource
+| Verb      | URI                  | Action  | Route Name     |
+|-----------|----------------------|---------|----------------|
+| GET       | /photos              | index   | photos.index   |
+| GET       | /photos/create       | create  | photos.create  |
+| POST      | /photos              | store   | photos.store   |
+| GET       | /photos/{photo}      | show    | photos.show    |
+| GET       | /photos/{photo}/edit | edit    | photos.edit    |
+| PUT/PATCH | /photos/{photo}      | update  | photos.update  |
+| DELETE    | /photos/{photo}      | destroy | photos.destroy |
 
-// TODO
+- You **SHOULD** use similar naming convention for routes that are not Restful routes. For example:
 
-### ## Naming Convention
+| Verb      | URI            | Action  | Route Name     |
+|-----------|----------------|---------|----------------|
+| GET       | /photos/import | index   | photos.index   |
+| GET       | /photos/export | create  | photos.create  |
 
-// TODO
+- A resource **MUST** be named in plural
+- You **MAY** use `resource()` function for Restful routes:
+
+  ```
+  Route::resource('photos', 'PhotoController');
+  ```
+
+- If you need to partially declare Restful routes via `resource()` function, you **MUST** use `only` options to list
+  routes needed. You **MUST NOT** use `except` options to exclude routes unused.
+
+  ```
+  Route::resource('photos', 'PhotoController', ['only' => ['index', 'show']]);
+  ```
+
+- You **MUST** name all the routes via `name()` function. You **MUST** use resource as a prefix:
+
+  ```
+  Route::post('photos/export', 'PhotoController@export')->name('photos.export');
+  ```
+
+- You **MUST** use `route()` function to get URL:
+
+  ```
+  $photo = App\Models\Photo::find(1);
+  
+  $url = route('photos.show', ['id' => $photo->id]);
+  ```
+  
+- You **MAY** use `url()` function in some conditions that `route()` is unavailable
+
+  ```
+  $photo = App\Models\Photo::find(1);
+
+  echo url("/photos/{$photo->id}");
+  ```
 
 ## # Eloquent ORM
 
