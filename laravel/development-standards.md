@@ -276,28 +276,49 @@ You **MUST** put trait files under *app/Model/Traits*
 
 - You **MUST** create seeders via Artisan command
 - Seeders **MUST** be name in singular and `PascalCase`. e.g. `UserSeeder`
-- You **MUST** seed table data by calling seeders with `call()` function in *database/seeders/BaseSeeder*, rather than directly seeding data in it.
+- You **MUST** seed table data by calling seeders with `call()` function in *database/seeders/BaseSeeder*, rather than
+  directly seeding data in it.
 - You **SHOULD** consider to use `WithoutModelEvents` trait to prevent model events from being dispatched
 
 ## # Controllers
 
 ### ## Naming Convention
 
-// TODO
+- You **MUST** use Restful resource controllers in preference
+- Controllers **MUST** be named in singular and `PascalCase`. e.g. `UserController`
 
 ### ## Keep Tiny & Tidy
 
-// TODO
+You **MUST** keep your controllers as small and readable as possible
+
+- You **SHOULD** make each controller function name sense, you **SHOULD NOT** write annotation for controller functions
+- You **SHOULD** write annotation for complex code fragments to explain "why to do so"
+- You **SHOULD NOT** write private functions in controllers, you **SHOULD** only store public **routing actions** in
+  controllers
+- You **MUST NOT** keep unused functions: if a controller function is not used anywhere, it should be removed
+- You **SHOULD** wisely use **service layer** and **repository layer** to refine controllers (see more
+  at [Repositories](#-repositories) and [Services](#-services))
+
+> [Repository vs Service vs Trait](https://stackoverflow.com/questions/60029955/when-to-use-repository-vs-service-vs-trait-in-laravel)
 
 ### ## Repositories
+
+Repository layer is used to decouple resource model operations from the corresponding resource controller.
+
+- If you are using TDD (Test-driven development), you **SHOULD** use repository for the ease of unit testings
+- Repositories **MUST** be resource-based and in `PascalCase`. e.g. `UserRepository`
+- Repository files **MUST** be put under *app/Repositories*
+- You **MUST** create an interface for each repository and implement it in the repository
+- You **SHOULD NOT** include resource name in repository functions. e.g. Good: `findById()`; Bad: `getUserById()`
+
+> See more at: [Laravel Repository Pattern](https://medium.com/@farhadmsyv/laravel-repository-pattern-861c2dd96a32) and
+> [Sample Project](https://github.com/lifebyte-systems/lifebyte-web-laravel-sample)
+
+### ## Services
 
 // TODO
 
 ### ## API Controllers
-
-## # Services
-
-// TODO
 
 ## # Views
 
