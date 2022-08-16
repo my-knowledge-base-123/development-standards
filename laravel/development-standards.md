@@ -183,7 +183,7 @@ echo url("/photos/{$photo->id}");
 You **MUST** group API routes by version. Your *api.php* router file should look like this:
 
 ```php
-// routers/api.php
+// routes/api.php
 
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
@@ -220,7 +220,7 @@ declare relationships or local scopes in a trait, while you **MUST NOT** include
 Let's imagine a couple of models have a Company relationship.
 
 ```php
-// app/Model/Traits/HasCompany.php
+// app/Models/Traits/HasCompany.php
 
 namespace App\Models\Traits;
 
@@ -241,7 +241,7 @@ trait HasCompany {
 Now you can easily share code from the trait, by the keyword `use` supported by PHP.
 
 ```php
-// app/Model/User.php
+// app/Models/User.php
 
 use App\Models\Traits\HasCompany;
 
