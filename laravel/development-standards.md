@@ -152,7 +152,7 @@ Route::resource('photos', 'PhotoController');
 ```
 
 If you need to partially declare Restful routes via `resource()` function, you **MUST** use `only` options to list
-  routes needed. You **MUST NOT** use `except` options to exclude routes unused.
+routes needed. You **MUST NOT** use `except` options to exclude routes unused.
 
 ```php
 <?php
@@ -212,11 +212,57 @@ Route::prefix('v1')
 
 ### ## Models
 
-// TODO
+- You **MUST** create a model via Artisan command: `php artisan make:model`
+- A model **MUST** be named in singular. e.g. `App\Model\Photo`
+- A model class **MUST** be named in singular. e.g. `app/Model/Photo.php`
 
 ### ## Traits
 
-// TODO
+Some redundant code fragments will make your models "fat", you **SHOULD** use Trait to refine models, for the ease of
+readability and maintainability. Traits an alternative approach to inheritance that solves some limitations of single
+class inheritance, which PHP uses. This is commonly used to share similar logic across models.
+
+A trait **MUST** be to share similar logic across models (model-relative) rather than business logic. e.g. You **MAY**
+declare relationships or local scopes in a trait, while you **MUST NOT** include CRUD operations in a trait.
+
+Let's imagine a couple of models have a Company relationship.
+
+```php
+// app/Model/Traits/HasCompany.php
+
+<? php
+
+namespace App\Models\Traits;
+
+use App\Models\Company;
+use Illuminate\Database\Eloquent\Concerns\HasRelationships;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+trait HasCompany {
+
+    use HasRelationships;
+
+    public function company() {
+        return $this->belongsTo(Company::class);
+    }
+}
+```
+
+Now you can easily share code from the trait, by the keyword `use` supported by PHP.
+
+```php
+// app/Model/User.php
+
+<?php
+
+use App\Models\Traits\HasCompany;
+
+class User {
+    use HasCompany;
+}
+```
+
+You **MUST** put trait files under *app/Model/Traits*
 
 ### ## Repositories
 
