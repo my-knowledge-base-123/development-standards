@@ -193,6 +193,7 @@ You **MUST** group API routes by version. Your *api.php* router file should look
 ```php
 <?php
 
+use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -200,15 +201,7 @@ Route::prefix('v1')
     ->name('api.v1.')
     ->namespace('App\Http\Controllers\Api\V1')
     ->group(function () {
-        Route::get('photos/index', 'PhotoController@index')->name('photos.show');
-        // More routes ...
-    });
-    
-Route::prefix('v2')
-    ->name('api.v2.')
-    ->namespace('App\Http\Controllers\Api\V2')
-    ->group(function () {
-        Route::get('photos/index', 'PhotoController@index')->name('photos.show');
+        Route::resource('users', UserController::class);
         // More routes ...
     });
 ```
