@@ -11,7 +11,7 @@
 [# Environment Variables and Configurations](#-environment-variables-and-configurations)  
 [# Routers](#-routers)  
 [# Eloquent ORM](#-eloquent-orm)  
-[# Database](#-database)
+[# Database](#-database)  
 [# Controllers](#-controllers)  
 [# Services](#-services)  
 [# Views](#-views)  
@@ -146,8 +146,6 @@ A resource **MUST** be named in plural
 You **MAY** use `resource()` function for Restful routes:
 
 ```php
-<?php
-
 Route::resource('photos', 'PhotoController');
 ```
 
@@ -155,8 +153,6 @@ If you need to partially declare Restful routes via `resource()` function, you *
 routes needed. You **MUST NOT** use `except` options to exclude routes unused.
 
 ```php
-<?php
-
 Route::resource('photos', 'PhotoController', ['only' => ['index', 'show']]);
 ```
 
@@ -169,8 +165,6 @@ Route::post('photos/export', 'PhotoController@export')->name('photos.export');
 You **MUST** use `route()` function to get URL:
 
 ```php
-<?php
-
 $photo = App\Models\Photo::find(1);
 
 $url = route('photos.show', ['id' => $photo->id]);
@@ -179,8 +173,6 @@ $url = route('photos.show', ['id' => $photo->id]);
 You **MAY** use `url()` function in some conditions that `route()` is unavailable
 
 ```php
-<?php
-
 $photo = App\Models\Photo::find(1);
 
 echo url("/photos/{$photo->id}"); 
@@ -191,11 +183,10 @@ echo url("/photos/{$photo->id}");
 You **MUST** group API routes by version. Your *api.php* router file should look like this:
 
 ```php
-<?php
+// routers/api.php
 
 use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Support\Facades\Route;
-
 
 Route::prefix('v1')
     ->name('api.v1.')
@@ -231,8 +222,6 @@ Let's imagine a couple of models have a Company relationship.
 ```php
 // app/Model/Traits/HasCompany.php
 
-<? php
-
 namespace App\Models\Traits;
 
 use App\Models\Company;
@@ -253,8 +242,6 @@ Now you can easily share code from the trait, by the keyword `use` supported by 
 
 ```php
 // app/Model/User.php
-
-<?php
 
 use App\Models\Traits\HasCompany;
 
