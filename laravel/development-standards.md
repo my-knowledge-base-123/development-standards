@@ -121,9 +121,9 @@ Pros:
 
 ### ## Resource-based Routes
 
-- You **MUST** use Restful (resource-based) routes (
-  see [resource routing](https://laravel.com/docs/9.x/controllers#actions-handled-by-resource-controller)). A standard
-  sample of Restful routes:
+You **MUST** use Restful (resource-based) routes (
+see [resource routing](https://laravel.com/docs/9.x/controllers#actions-handled-by-resource-controller)). A standard
+sample of Restful routes:
 
 | Verb      | URI                  | Action  | Route Name     |
 |-----------|----------------------|---------|----------------|
@@ -135,48 +135,85 @@ Pros:
 | PUT/PATCH | /photos/{photo}      | update  | photos.update  |
 | DELETE    | /photos/{photo}      | destroy | photos.destroy |
 
-- You **SHOULD** use similar naming convention for routes that are not Restful routes. For example:
+You **SHOULD** use similar naming convention for routes that are not Restful routes. For example:
 
 | Verb      | URI            | Action  | Route Name     |
 |-----------|----------------|---------|----------------|
 | GET       | /photos/import | index   | photos.index   |
 | GET       | /photos/export | create  | photos.create  |
 
-- A resource **MUST** be named in plural
-- You **MAY** use `resource()` function for Restful routes:
+A resource **MUST** be named in plural
+You **MAY** use `resource()` function for Restful routes:
 
-  ```
-  Route::resource('photos', 'PhotoController');
-  ```
+```php
+<?php
 
-- If you need to partially declare Restful routes via `resource()` function, you **MUST** use `only` options to list
+Route::resource('photos', 'PhotoController');
+```
+
+If you need to partially declare Restful routes via `resource()` function, you **MUST** use `only` options to list
   routes needed. You **MUST NOT** use `except` options to exclude routes unused.
 
-  ```
-  Route::resource('photos', 'PhotoController', ['only' => ['index', 'show']]);
-  ```
+```php
+<?php
 
-- You **MUST** name all the routes via `name()` function. You **MUST** use resource as a prefix:
+Route::resource('photos', 'PhotoController', ['only' => ['index', 'show']]);
+```
 
-  ```
-  Route::post('photos/export', 'PhotoController@export')->name('photos.export');
-  ```
+You **MUST** name all the routes via `name()` function. You **MUST** use resource as a prefix:
 
-- You **MUST** use `route()` function to get URL:
+```php
+Route::post('photos/export', 'PhotoController@export')->name('photos.export');
+```
 
-  ```
-  $photo = App\Models\Photo::find(1);
-  
-  $url = route('photos.show', ['id' => $photo->id]);
-  ```
-  
-- You **MAY** use `url()` function in some conditions that `route()` is unavailable
+You **MUST** use `route()` function to get URL:
 
-  ```
-  $photo = App\Models\Photo::find(1);
+```php
+<?php
 
-  echo url("/photos/{$photo->id}");
-  ```
+$photo = App\Models\Photo::find(1);
+
+$url = route('photos.show', ['id' => $photo->id]);
+```
+
+You **MAY** use `url()` function in some conditions that `route()` is unavailable
+
+```php
+<?php
+
+$photo = App\Models\Photo::find(1);
+
+echo url("/photos/{$photo->id}"); 
+```
+
+### ## API Routes
+
+You **MUST** group API routes by version. Your *api.php* router file should look like this:
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+
+Route::prefix('v1')
+    ->name('api.v1.')
+    ->namespace('App\Http\Controllers\Api\V1')
+    ->group(function () {
+        Route::get('photos/index', 'PhotoController@index')->name('photos.show');
+        // More routes ...
+    });
+    
+Route::prefix('v2')
+    ->name('api.v2.')
+    ->namespace('App\Http\Controllers\Api\V2')
+    ->group(function () {
+        Route::get('photos/index', 'PhotoController@index')->name('photos.show');
+        // More routes ...
+    });
+```
+
+> It is notable that we set `namespace` to locate controllers, see more details in [API Controllers](#-api-controllers).
 
 ## # Eloquent ORM
 
@@ -215,6 +252,8 @@ Pros:
 ### ## Keep Tiny & Tidy
 
 // TODO
+
+### ## API Controllers
 
 ## # Services
 
