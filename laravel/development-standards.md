@@ -215,6 +215,7 @@ Route::prefix('v1')
 - You **MUST** create a model via Artisan command: `php artisan make:model`
 - A model **MUST** be named in singular. e.g. `App\Model\Photo`
 - A model class **MUST** be named in singular. e.g. `app/Model/Photo.php`
+- A model attribute for a foreign key **MUST** be `resource_id`. e.g. `user_id`, `post_id`
 
 ### ## Traits
 
@@ -264,23 +265,32 @@ class User {
 
 You **MUST** put trait files under *app/Model/Traits*
 
-### ## Repositories
-
-// TODO
-
 ## # Database
+
+### ## Tables
+
+- Tables **MUST** be named in plural and `snake_case`. e.g. `photos`, `my_photos`
+- Table columns **MUST** be named in `snake_case`. e.g. `view_count`, `is_admin`
+- The primary key of each table **MUST** be `id`
+- The foreign key of each table **MUST** be `resource_id`. e.g. `user_id`, `post_id`
 
 ### ## Migrations
 
-// TODO
-
-### ## Factories
-
-// TODO
+- You **MUST NOT** create/modify/share database using database tools/commands, you **MUST** use migration, and commit it
+  to the version control
+- You **MUST** use Artisan command to create a migration
+- Migrations **MUST** be name in plural. e.g. `2014_10_12_000000_create_users_table.php`
+- If you are not in the first development lifecycle (where database has been created and published to the production
+  environment), you **SHOULD** modify database tables by creating a new migration file with a meaning for name. e.g.
+  create *database/migrations/{timestamp}_add_avatar_and_introduction_to_users_table.php* by command
+  `php artisan make:migration add_avatar_and_introduction_to_users_table --table=users`
 
 ### ## Seeders
 
-// TODO
+- You **MUST** create seeders via Artisan command
+- Seeders **MUST** be name in singular and `PascalCase`. e.g. `UserSeeder`
+- You **MUST** seed table data by calling seeders with `call()` function in *database/seeders/BaseSeeder*, rather than directly seeding data in it.
+- You **SHOULD** consider to use `WithoutModelEvents` trait to prevent model events from being dispatched
 
 ## # Controllers
 
@@ -289,6 +299,10 @@ You **MUST** put trait files under *app/Model/Traits*
 // TODO
 
 ### ## Keep Tiny & Tidy
+
+// TODO
+
+### ## Repositories
 
 // TODO
 
