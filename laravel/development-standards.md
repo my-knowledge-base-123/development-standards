@@ -252,6 +252,25 @@ class User {
 
 You **MUST** put trait files under *app/Model/Traits*
 
+### ## API Resources
+
+#### Resources
+
+- When building APIs, you **MUST** create [API resources](https://laravel.com/docs/9.x/eloquent-resources) for Eloquent
+  models
+- You **MUST** use Artisan command to generate resources
+- Resources **MUST** be model-based, named in `PascalCase` and in singular. e.g. `UserResource`
+- Resource files **MUST** be located under `app/Http/Resources`
+
+#### Resource Collections
+
+- If you would not like to customise
+  the [resource collection](https://laravel.com/docs/9.x/eloquent-resources#resource-collections) of a model, you **MUST
+  NOT** generate resource collection
+- You **MUST** use Artisan command to generate resource collections
+- Resources **MUST** be model-based, named in `PascalCase` and in singular. e.g. `UserCollection`
+- Resource files **MUST** be located under `app/Http/Resources`
+
 ## # Database
 
 ### ## Tables
