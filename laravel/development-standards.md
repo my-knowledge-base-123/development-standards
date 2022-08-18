@@ -12,9 +12,8 @@
 [# Routers](#-routers)  
 [# Eloquent ORM](#-eloquent-orm)  
 [# Database](#-database)  
-[# Controllers](#-controllers)  
-[# Services](#-services)  
 [# Views](#-views)  
+[# Controllers](#-controllers)  
 [# Validation](#-validation)  
 [# Custom Artisan Commands](#-custom-artisan-commands)  
 [# Security](#-security)  
@@ -299,6 +298,48 @@ You **MUST** put trait files under *app/Model/Traits*
   directly seeding data in it.
 - You **SHOULD** consider to use `WithoutModelEvents` trait to prevent model events from being dispatched
 
+## # Views
+
+### ## Blade Templates
+
+- If you would not like to separate the front-end from the back-end, you **MUST** firstly consider
+  to use [Blade Templates](https://laravel.com/docs/9.x/blade)
+- You **MUST** keep your `/view` path clean and clear
+    - You **MUST** categorise your view files, and you **MUST NOT** put view files directly under `/view`
+    - View files **MUST** be named in 'snake_case'. e.g. `main_content.blade.php`
+    - You **MUST** name `subview` files with `_` prefix. e.g. `_upload_form.blade.php`
+    - `Base view` files **MUST** have prefix `_base`, e.g. `_base_logo.blade.php`
+    - `Layouts view` files **MUST** have prefix `_the`, e.g. `_the_header.blade.php`
+    - You **SHOULD** consider to use `template inheritance` and use `/layouts/the_app.blade.php` as the general layout
+    - Resource views filenames **MUST** keep with Restful routes and resource controllers.
+
+| View                    | Page Content | Route Name    | Controller             |
+|-------------------------|--------------|---------------|------------------------|
+| `users/index.blade.php` | User list    | `users.index` | `UserController@index` |
+
+Your view directory will be like this:
+
+```text
+|-- views
+    |-- base    // Common elements
+        |-- _base_logo.blade.php
+        |-- ...
+    |-- layouts
+        |-- _the_header.blade.php
+        |-- _the_footer.blade.php
+        |-- the_app.blade.php
+        |-- ...
+    |-- pages
+        |-- welcome.blade.php
+        |-- ...
+    |-- resources
+        |-- users
+            |-- index.blade.php
+            |-- show.blade.php
+            |-- create_and_edit.blade.php   // You can combine create and edit view if they share a similar page layout
+            |-- ...
+```
+
 ## # Controllers
 
 ### ## Naming Convention
@@ -368,8 +409,6 @@ used in both `Api\V1\UserController` and `Web\UserController`.
 
 - Service files **MUST** be put under path _/Services_
 - Services **MUST** be named in singular and `PascalCase`. e.g. `UserService`
-
-## # Views
 
 ## # Validation
 
