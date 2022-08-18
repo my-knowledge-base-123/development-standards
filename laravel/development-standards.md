@@ -14,7 +14,7 @@
 [# Database](#-database)  
 [# Views](#-views)  
 [# Controllers](#-controllers)  
-[# Validation](#-validation)  
+[# Request Validation](#-request-validation)  
 [# Custom Artisan Commands](#-custom-artisan-commands)  
 [# Security](#-security)  
 [# Performance Optimisation](#-performance-optimisation)
@@ -410,7 +410,15 @@ used in both `Api\V1\UserController` and `Web\UserController`.
 - Service files **MUST** be put under path _/Services_
 - Services **MUST** be named in singular and `PascalCase`. e.g. `UserService`
 
-## # Validation
+## # Request Validation
+
+- You **MUST** use [Form Request Validation](https://laravel.com/docs/9.x/validation#form-request-validation) to
+  validate requests
+- All form request classes **MUST** extend the base class `app/Http/Requests/Request.php` and overwrite its methods if
+  necessary
+- Form request class name **MUST** be resource-based, singular and in `PascalCase`. e.g. `UserRequest`
+
+See [Sample](https://github.com/lifebyte-systems/lifebyte-web-laravel-sample/tree/main/src/app/Http/Requests).
 
 ## # Custom Artisan Commands
 
