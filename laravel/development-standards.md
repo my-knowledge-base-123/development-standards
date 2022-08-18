@@ -306,10 +306,31 @@ You **MUST** put trait files under *app/Model/Traits*
 - You **MUST** use Restful resource controllers in preference
 - Controllers **MUST** be named in singular and `PascalCase`. e.g. `UserController`
 
+### ## API Controllers
+
+- You **MUST** group API controllers by version
+- If you use both `API controllers` and `Web controllers`, You **MUST** put `Web controllers` under `Web` directory
+
+Your `app/Http/Controllers` file will be like this:
+
+```text
+|-- Controllers
+    |-- Api
+        |-- V1
+            |-- Controller  // API base controller
+            |-- UserController
+            |-- ...
+    |-- Web
+        |-- Controller  // Web base controller
+        |-- UserController
+        |-- ...
+```
+
 ### ## Keep Tiny & Tidy
 
 You **MUST** keep your controllers as small and readable as possible
 
+- Each controller **MUST** extend the base controller under the same project path
 - You **SHOULD** make each controller function name sense, you **SHOULD NOT** write annotation for controller functions
 - You **SHOULD** write annotation for complex code fragments to explain "why to do so"
 - You **SHOULD NOT** write private functions in controllers, you **SHOULD** only store public **routing actions** in
@@ -317,6 +338,10 @@ You **MUST** keep your controllers as small and readable as possible
 - You **MUST NOT** keep unused functions: if a controller function is not used anywhere, it should be removed
 - You **SHOULD** wisely use **service layer** and **repository layer** to refine controllers (see more
   at [Repositories](#-repositories) and [Services](#-services))
+- You **SHOULD** use `try-catch` carefully in controller methods to handle error response, as Laravel has built-in error
+  handling, which ease this process. Only catch exceptions you expect to be thrown in that block that way you can
+  properly log unexpected exceptions and fix any other bugs in your code that may have caused those, instead of hiding
+  them from yourself.
 
 > [Repository vs Service vs Trait](https://stackoverflow.com/questions/60029955/when-to-use-repository-vs-service-vs-trait-in-laravel)
 
@@ -335,9 +360,14 @@ Repository layer is used to decouple resource model operations from the correspo
 
 ### ## Services
 
-// TODO
+The `Service` is layer standing between `Controller` and `Repository`, that helps you to abstract your logic for your
+domain logic. It is helpful when you need to use a logic in multiple places (e.g. different controllers/front-ends).
 
-### ## API Controllers
+See [Laravel Sample](https://github.com/lifebyte-systems/lifebyte-web-laravel-sample), where `UserService` methods are
+used in both `Api\V1\UserController` and `Web\UserController`.
+
+- Service files **MUST** be put under path _/Services_
+- Services **MUST** be named in singular and `PascalCase`. e.g. `UserService`
 
 ## # Views
 
