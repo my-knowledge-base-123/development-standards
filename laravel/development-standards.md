@@ -422,28 +422,77 @@ See [Sample](https://github.com/lifebyte-systems/lifebyte-web-laravel-sample/tre
 
 ## # Custom Artisan Commands
 
+Custom Artisan commands **MUST** contain the namespace of the project. For example:
+
+```shell
+// Good
+php artisan larave-sample:clear-token
+php artisan larave-sample:export-users-to-csv
+
+// Bad
+php artisan clear-token
+php artisan export-users-to-csv
+```
+
 ## # Security
 
 ### ## DEBUG Mode
 
-// TODO
+You **MUST** set env variable `APP_DEBUG=false` at PRODUCTION environment.
 
-### ## XXS
+### ## XXS (Cross-Site Scripting)
 
-// TODO
+See [this](https://owasp.org/www-community/attacks/xss/) to know what is XXS.
+
+- By default, You **MUST** use `{{ $content }}` in blade template, as we cannot guarantee data supplied by users is
+  secure and un-malicious.
+- If you do not want your data to be escaped, you **MAY** use `{!! $content !!}`. Then you **MUST** manually purify the
+  content with [HTMLPurifier](https://github.com/mewebstudio/Purifier)
 
 ### ## SQL Injection
 
-// TODO
+- You should never allow user input to dictate the `column names` referenced by your queries, including "order by"
+  columns.
+- If you use `DB::raw()` to build complex SQL queries, you **MUST** use `query bindings` to avoid SQL injection
+- Most query methods in `DB` class receive `$bindings` as the second argument. (See
+  in [Laravel documentation](https://laravel.com/docs/9.x/queriest))
 
 ### ## Massive Assignment
 
-// TODO
+Laravel provides whitelist `$fillable` and blacklist `$guarded` to filter massive assignment. You **SHOULD** use them
+properly.
+
+You **MUST NOT** use both `$fillable` and `$guarded` in a single model, as that makes no sense.
 
 ### ## CSRF Protection
 
+- You **MUST** use `DELETE` request method to destroy data
+- You **MUST** use `POST`, `PUT` or `PATCH` to update data
+
+See more in [Laravel Documentation](https://laravel.com/docs/9.x/csrf).
+
 ## # Performance Optimisation
 
-### # Avoid N + 1 Query Problem
+### # Avoid N + 1 Queries
 
-### # Caching
+- You **MUST** use `Eager loading` properly when loading relative model data to avoid N + 1 queries
+- You **MUST** optimise the amount of SQL queries of each page before push the project to the production environment
+- You **MAY** use tools: [Clockwork](https://underground.works/clockwork/)
+  and/or [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar)
+
+### # Loading Optimisation
+
+When deploying to production, you **MUST** optimise Composer's class autoloader map so Composer can
+quickly find the proper file to load for a given class:
+
+```shell
+composer install --optimize-autoloader --no-dev
+```
+
+When deploying to production, you **MUST** optimise configuration loading, route loading and view loading with command:
+
+```shell
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
