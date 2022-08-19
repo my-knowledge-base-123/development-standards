@@ -3,7 +3,7 @@
 ## *Table of Contents*
 
 [# Introduction](#-introduction)  
-[# Philosophy](#-philosophy)  
+[# Concepts](#-concepts)  
 [# Rule Priorities](#-rule-priorities)  
 [# Design Pattern](#-design-pattern)  
 [# Technology Stack](#-technology-stack)  
@@ -24,21 +24,21 @@
 This article provides a set of development standards and rules to Laravel developers, for the purpose of:
 
 - Productivity Improvement: Avoid the waste of "decision time".
-- Style Uniform: Uniform the coding styles and strategies of the development team.
+- Uniform: Uniform the coding styles and developing strategies.
 - Error Reducing: Reduce the error chance made by developers.
 
-> Standards and rules in this article are designed for large and complex Vue.js projects, while some of them are
+> Standards and rules in this article are designed for large and complex Laravel projects, while some of them are
 > considered too strict or redundancy for simple projects. Please make wise choice to avoid over-configuration and
 > over-designing.
 
-## # Philosophy
+## # Concepts
 
-> - DRY (Don't Repeat Yourself): Don't write duplicated logic. If a logic is used multiple times, it should be decoupled
-    / refactored.
+> - DRY (Don't Repeat Yourself): Don't write duplicated logics. If a logic is used multiple times, you should consider
+    to decouple/refactor it.
 > - COC (Convention Over Configuration): Give preference to methodologies that recommended by the framework. Don't
     over-configure.
-> - KISS (Keep it Simple, Stupid): Write code that is simple, readable, understandable and maintainable. Annotate
-    complex code properly. Don't over-design.
+> - KISS (Keep it Simple, Stupid):Make your code simple, readable, understandable and maintainable. Annotate complex
+    code properly. Don't over-design.
 > - Chef's Recommendation: Don't DIY if there is an existing solution provided by experienced sponsors.
 > - Official Advice: Give preference to solutions that are recommended officially.
 
