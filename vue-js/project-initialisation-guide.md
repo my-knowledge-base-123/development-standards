@@ -197,7 +197,8 @@ Add Prettier script in `package.json`: Format all files (. means all files)
 }
 ```
 
-> Note: You need to install the plugin `Prettier - Code formatter` if use VSCode editor.
+> See more Prettier settings at: [Editor settings](editor-settings.md)
+
 
 ## ESLint
 
@@ -270,6 +271,7 @@ Add eslint scripts in `package.json`
   }
 }
 ```
+> See more ESLint settings at: [Editor settings](editor-settings.md)
 
 ### Update `.gitignore`
 
@@ -279,7 +281,6 @@ Add eslint scripts in `package.json`
 .eslintcache
 # ...
 ```
-
 ## Resolve Conflicts between Prettier and ESLint
 
 ### Install & Config Plugins
@@ -290,7 +291,7 @@ Install plugins:
 $ npm i eslint-plugin-prettier eslint-config-prettier -D
 ```
 
-Add the plugin in `.eslntrc.js`:
+Add the plugin in `.eslintrc.cjs`:
 
 ```javascript
 module.exports = {
@@ -368,7 +369,7 @@ Sample error: `ESLint: Missing file extension "ts"; for '@/hooks/useSomeHook'; (
 <details>
 <summary>See Solution</summary>
 
-Config `.eslintrc.js`
+Config `.eslintrc.cjs`
 
 ```javascript
 module.exports = {
