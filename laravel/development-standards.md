@@ -163,7 +163,7 @@ Route::resource('photos', 'PhotoController', ['except' => ['create', 'edit', 'up
 You **MUST** name all the routes via `name()` function. You **MUST** use resource as a prefix:
 
 ```php
-Route::post('photos/export', 'PhotoController@export')->name('photos.export');
+Route::get('photos/export', 'PhotoController@export')->name('photos.export');
 ```
 
 You **MUST** use `route()` function to get URL:
