@@ -2,16 +2,14 @@
 
 ## *Table of Contents*
 
-[# Introduction](#introduction)  
-[# Philosophy](#philosophy)  
-[# Design Pattern](#design-pattern)  
-[# Technology Stack](#technology-stack)  
-[# Project Initialisation](#project-initialisation)  
-[# Environment & Configurations](#environment--configurations)
+[# Introduction](#-introduction)  
+[# Philosophy](#-concepts)  
+[# Design Pattern](#-design-pattern)  
+[# Technology Stack](#-technology-stack)  
+[# Project Initialisation](#-project-initialisation)  
+[# Environment & Configurations](#-environment--configurations)
 
-<a name="introduction"></a>
-
-## Introduction
+## # Introduction
 
 This article provides a set of development standards and rules to Vue.js developers, for the purpose of:
 
@@ -23,9 +21,7 @@ This article provides a set of development standards and rules to Vue.js develop
 > considered too strict or redundancy for simple projects. Please make wise choice to avoid over-configuration and
 > over-designing.
 
-<a name="philosophy"></a>
-
-## Philosophy
+## # Concepts
 
 > - DRY (Don't Repeat Yourself): Don't write duplicated logic. If a logic is used multiple times, it should be decoupled
     / refactored.
@@ -36,16 +32,12 @@ This article provides a set of development standards and rules to Vue.js develop
 > - Chef's Recommendation: Don't DIY if there is an existing solution provided by experienced sponsors.
 > - Official Advice: Give preference to solutions that are recommended officially.
 
-<a name="design-pattern"></a>
-
-## Design Pattern
+## # Design Pattern
 
 - Modularisation: Design programs by modules. Group program by service logic or models.
 - Restful: Build project with standardised HTTP methods and "resource-based concept".
 
-<a name="rule-priorities"></a>
-
-## Rule Priorities
+## # Rule Priorities
 
 In order to avoid misunderstanding, this article uses different "modal verbs" to indicate the priorities of rules:
 
@@ -55,9 +47,7 @@ In order to avoid misunderstanding, this article uses different "modal verbs" to
 > - SHOULD NOT: Highly not recommended, but not mandatory.
 > - MAY: Preferred; Not frequently used in this article.
 
-<a name="technology-stack"></a>
-
-## Technology Stack
+## # Technology Stack
 
 ### Version Selection
 
@@ -69,16 +59,13 @@ version conflict.
 
 <a name="project-initialisation"></a>
 
-## Project Initialisation
+## # Project Initialisation
 
-See [Vue.js Project Initialisation Guide](https://github.com/lifebyte-systems/lifebyte-web-development-standards/blob/main/vue-js/project-initialisation-guide.md)
-.
+See [Vue.js Project Sample](https://github.com/lifebyte-systems/lifebyte-web-vue-sample).
 
 > You **MUST NOT** initialise a project via copy-paste files from another project.
 
-<a name="environment-configurations"></a>
-
-## Environment & Configurations
+## # Environment & Configurations
 
 ### Config Layer
 
@@ -89,14 +76,13 @@ then there would be a trouble: we have to set it as a string in .env file, and p
 This obviously waste the time and generates a lot of duplicated code that is hard to maintain.
 
 For this reason, we create a config layer to process environment variables. In this layer, all environment values are
-processed, and a utility function `config()` is exposed for usage.
+processed accessible globally.
 
-You **MUST** use `config()` to get environment variables and configurations. You **MUST NOT** use `import.meta.env`
-anywhere in the project expect to */configs* file.
+You **MUST** use store management tool ([Pinia](https://pinia.vuejs.org/)) to get environment variables and
+configurations. You **MUST NOT** use `import.meta.env` anywhere in the project expect to set configurations.
 
 Pros:
 
-- Clear declaration: `config()` for configurations, `import.meta.env` for determine on different running environments.
 - DRY: Process complex environment variables in config layer, avoid duplicated code.
 - Make code robust and flexible.
 
@@ -117,12 +103,12 @@ See [Vue.js sample project](https://github.com/lifebyte-systems/lifebyte-web-vue
 
 ### What's In It
 
-*/asset* path keeps globally shared static data , including images, styling files (e.g. vendor styles,
-custom styles), shared documents (e.g. privacy policy PDF document), static data (e.g. country list JSON file), etc.
+`/assets` directory keeps globally shared static data, including images, styling files (e.g. vendor styles, custom
+styles), shared documents (e.g. privacy policy PDF document), static data (e.g. country list JSON file), etc.
 
 You **MUST** group assets files by type or by purpose.
 
-A common file structure **SHOULD** be following:
+A common file structure of assets **SHOULD** be following:
 
 ```text
 |-- /assets
@@ -144,7 +130,7 @@ A common file structure **SHOULD** be following:
 
 - An assets file **MUST** have a meaningful name that well describes its content.
 - The name **MUST** in `kebab-case`.
-- You **MUST NOT** use abbreviation in a filename.
+- You **SHOULD NOT** use abbreviation for a filename.
 
 <a name="utilities-hooks"></a>
 
