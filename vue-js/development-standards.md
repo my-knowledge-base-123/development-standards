@@ -146,32 +146,94 @@ A common file structure of assets **SHOULD** be following:
 
 ## Components
 
-//TODO
+- Component names **MUST** be in `PascalCase`. e.g. `MyComponent.vue`
+- Component names **MUST** be multi-word, expect for root `App` component, and built-in components provided by Vue, such
+  as `<transition>` or `<component>`.
 
-<a name="state-management"></a>
+    ```text
+    // Good
+    TodoItem.vue
+    
+    // Bad
+    Todo.vue
+    ```
+
+- You **MUST** name base components with a prefix `Base`. e.g. `BaseButton.vue`
+- You **MUST** name single-instance component with a prefix `The`. e.g. `TheHeader.vue`
+- Child components that are tightly coupled with their parent **MUST** include the parent component name as a prefix.
+
+    ```text
+    components/
+    |- TodoList.vue
+    |- TodoListItem.vue
+    |- TodoListItemButton.vue
+    ```
+
+- Component names **SHOULD** start with the highest-level (often most general) words and end with descriptive modifying
+  words.
+
+    ```text
+    components/
+    |- SearchButtonClear.vue
+    |- SearchButtonRun.vue
+    |- SearchInputQuery.vue
+    |- SearchInputExcludeGlob.vue
+    |- SettingsCheckboxTerms.vue
+    |- SettingsCheckboxLaunchOnStartup.vue
+    ```
+
+- Components with no content **MUST** be self-closing in single-file components, string templates, and JSX - but never
+  in DOM templates.
+
+    ```text
+    <!-- In single-file components, string templates, and JSX -->
+    <MyComponent/>
+    
+    <!-- In DOM templates -->
+    <my-component></my-component>
+    ```
+
+- Component names **MUST** always be `PascalCase` in single-file components and string templates - but `kebab-case` in
+  DOM templates.
+
+    ```text
+    <!-- In single-file components and string templates -->
+    <MyComponent/>
+    
+    <!-- In DOM templates -->
+    <my-component></my-component>
+    
+    <!-- Or Everywhere -->
+    <my-component></my-component>
+    ```
+
+### ## SFC (Single-file Component)
+
+- You **MUST** use `Composition API` to build components, while `<script setup>` is an optional.
+- You **MUST** declare the component name with `name` attribute.
+- You **MUST** define `prop` as detailed as possible (specifying at least prop type).
+- You **MUST** use `key` with `v-for`.
+- You **MUST NOT** use `v-if` with `v-for`
 
 ## State Management
 
 //TODO
 
-<a name="router"></a>
-
 ## Router
 
 //TODO
-
-<a name="requests-apis"></a>
 
 ## Requests & APIs
 
 //TODO
 
-<a name="localisation"></a>
-
 ## Localisation
 
 //TODO
 
-## Styling
+## Styles
 
-// TODO
+For applications, styles in a top-level `App` component and in layout components may be global, but all other components
+should always be scoped.
+
+Component libraries, however, should prefer a class-based strategy instead of using the `scoped` attribute.
