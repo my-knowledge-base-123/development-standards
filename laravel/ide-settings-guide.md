@@ -95,3 +95,10 @@ in advance
 
 > See more at: [Laravel documentation](https://laravel.com/docs/9.x/sail#debugging-with-xdebug).
 
+#### ### Debug APIs with Postman
+
+1. Do Xdebug settings above ([Debug on Chrome](#-debug-on-chrome))
+2. Add a cookie in Postman: `XDEBUG_SESSION=PHPSTORM; Path=/;`, or you can add a URL query in your request URL: `XDEBUG_SESSION_START=PHPSTORM`
+3. All done!
+
+See more [here](https://lukashajdu.com/post/usign-xdebug-with-postman/)
