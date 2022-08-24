@@ -22,12 +22,12 @@ $ nvm install stable
 ### Initialise Vite Project
 
 1. Run `npm init vite`
-1. Install `create-vite` if necessary
-1. Enter project name: some-name
-1. Select a framework: vue
-1. Select a variant: vue-ts
-1. Install dependencies: Run `npm install`
-1. Boot project: Run `npm run dev`
+2. Install `create-vite` if necessary
+3. Enter project name: some-name
+4. Select a framework: vue
+5. Select a variant: vue-ts
+6. Install dependencies: Run `npm install`
+7. Boot project: Run `npm run dev`
 
 ### Config `vite.config.ts`
 
@@ -54,7 +54,7 @@ export default defineConfig({
 })
 ```
 
-If cannot find module 'path' or its corresponding type declarations
+If you cannot find module 'path' or its corresponding type declarations
 
 ```shell
 $ npm i @types/node -D
@@ -62,26 +62,16 @@ $ npm i @types/node -D
 
 Config `tsconfig.json` for TypeScript support
 
-```typescript
+```json lines
 {
-    "compilerOptions"
-:
-    {
-        // ...
-        "baseUrl"
-    :
-        ".",
-            "paths"
-    :
-        {
-            "@/*"
-        :
-            ["src/*"]
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
         }
-    }
-,
-
-    // ...
+    },
 }
 ```
 
@@ -94,19 +84,19 @@ Create *docker-compose.yml* under project root path
 ```yaml
 version: "3"
 services:
-  app:
-    container_name: your-container-name
-    user: "root"
-    image: node:16
-    working_dir: /var/www/html/app/
-    entrypoint: /bin/bash
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - .:/var/www/html/app
-    ports:
-      - "80:80"
-    tty: true
+    app:
+        container_name: your-container-name
+        user: "root"
+        image: node:16
+        working_dir: /var/www/html/app/
+        entrypoint: /bin/bash
+        environment:
+            - NODE_ENV=development
+        volumes:
+            - .:/var/www/html/app
+        ports:
+            - "80:80"
+        tty: true
 ```
 
 Config *vite.config.ts*: set **host** option
@@ -134,10 +124,10 @@ COMPOSE_PROJECT_NAME=project-name
 ### Run project in Docker
 
 1. Got to the root path
-1. Start docker container: ```$ docker compose up -d```
-1. Open container's bash: ```$ docker exec -it [container-name] /bin/bash```
-1. Install dependencies: `$ npm install`
-1. Run dev server: `$ npm run dev`
+2. Start docker container: ```$ docker compose up -d```
+3. Open container's bash: ```$ docker exec -it [container-name] /bin/bash```
+4. Install dependencies: `$ npm install`
+5. Run dev server: `$ npm run dev`
 
 ## EditorConfig
 
@@ -191,14 +181,13 @@ Add Prettier script in `package.json`: Format all files (. means all files)
 
 ```json
 {
-  "scripts": {
-    "prettier": "npx prettier --write ."
-  }
+    "scripts": {
+        "prettier": "npx prettier --write ."
+    }
 }
 ```
 
-> See more Prettier settings at: [Editor settings](editor-settings.md)
-
+> See more Prettier settings at: [Editor settings](ide-settings-guide.md)
 
 ## ESLint
 
@@ -217,47 +206,28 @@ $ npx eslint --init
 > You may have to install `@eslint/create-config` if required, by simply type `y`.
 
 1. How would you like to use ESLint?
-
-- **To check syntax, find problems, and enforce code style**
-
+    - **To check syntax, find problems, and enforce code style**
 2. What type of modules does your project use?
-
-- **JavaScript modules (import/export)**
-
+    - **JavaScript modules (import/export)**
 3. Which framework does your project use?
-
-- **Vue.js**
-
+    - **Vue.js**
 4. Does your project use TypeScript?
-
-- **Yes**
-
+    - **Yes**
 5. Where does your code run?
-
-- **Browser**
-- **Node**
-
+    - **Browser**
+    - **Node**
 6. How would you like to define a style for your project?
-
-- **Use a popular style guide**
-
+    - **Use a popular style guide**
 7. Which style guide do you want to follow?
-
-- **Airbnb: https://github.com/airbnb/javascript**
-
+    - **Airbnb: https://github.com/airbnb/javascript**
 8. What format do you want your config file to be in?
-
-- **JavaScript**
-
+    - **JavaScript**
 9. Would you like to install them now?
-
-- **Yes**
-
+    - **Yes**
 10. Which package manager do you want to use?
+    - **npm**
 
-- **npm**
-
-> Note: You need to install the plugin `ESLint` if use VSCode editor.
+> Note: You need to install the plugin `ESLint` if you use VSCode editor.
 
 ### Add NPM Scripts
 
@@ -265,13 +235,14 @@ Add eslint scripts in `package.json`
 
 ```json
 {
-  "scripts": {
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.vue --fix"
-  }
+    "scripts": {
+        "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.vue",
+        "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.vue --fix"
+    }
 }
 ```
-> See more ESLint settings at: [Editor settings](editor-settings.md)
+
+> See more ESLint settings at: [Editor settings](ide-settings-guide.md)
 
 ### Update `.gitignore`
 
@@ -281,6 +252,7 @@ Add eslint scripts in `package.json`
 .eslintcache
 # ...
 ```
+
 ## Resolve Conflicts between Prettier and ESLint
 
 ### Install & Config Plugins
