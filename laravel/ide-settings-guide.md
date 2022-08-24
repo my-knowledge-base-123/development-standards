@@ -1,6 +1,6 @@
 # IDE Settings Guide
 
-## # PHPStorm
+## # PhpStorm
 
 ### ## Laravel Plugins
 
@@ -31,9 +31,9 @@ add `Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class` under the `provi
 return array(
     //...
     'providers' => array(
-         // ...
-         // Laravel IDE helper
-         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class',
+        // ...
+        // Laravel IDE helper
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class',
     ),
     // ...
 );
@@ -43,22 +43,55 @@ Update composer scripts in `composer.json` to enable automation:
 
 ```json lines
 {
-  // ...
-  "scripts": {
-    "post-update-cmd": [
-      // ...
-      "@ide-helper"
-    ],
     // ...
-    "ide-helper": [
-      "@php artisan ide-helper:generate",
-      "@php artisan ide-helper:meta",
-      "@php artisan ide-helper:models -N"
-    ]
-  }
+    "scripts": {
+        "post-update-cmd": [
+            // ...
+            "@ide-helper"
+        ],
+        // ...
+        "ide-helper": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta",
+            "@php artisan ide-helper:models -N"
+        ]
+    }
 }
 // ...
 ```
 
 > The Laravel IDE Helper may have to be run (`composer run ide-helper`) after changing or adding services, controllers,
-> models and views. 
+> models and views.
+
+### ## PHP CLI Interpreter
+
+1. Go to `Preferences > PHP`
+2. Click `...` at `CLI interpreter`
+3. Click `+`, select `From Docker, Vagrant, VM and Remote host`
+4. Select `Docker` in the popup dialog, select `sail-8.1/app:latest` in `Image name` dropdown. Check PHP general
+   information at `General` section and click OK
+
+### ## Debugging With Xdebug
+
+1. Add `SAIL_XDEBUG_MODE=develop,debug,coverage` to `.env` file to configure Xdebug
+2. Restart Sail:
+    ```shell
+    sail up -d
+    ```
+
+#### ### Debug on Chrome
+
+Your Chrome browser should
+install [Xdebug helper extension](https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc)
+in advance
+
+1. Enable listening to incoming debugging connections: Toggle the `Start Listen for PHP Debug Connections` button on the PhpStorm toolbar
+2. Set a breakpoint in your code
+3. Active Xdebug helper in Chrome
+4. Start the debugging session:
+   1. Reload page in the browser and return to PhpStorm, In the` Incoming Connection From Xdebug` dialog, click Accept
+   2. Go to `Preferences > PHP > Servers`, map directory `src` to the absolute path on server `/var/www/html`, then click OK
+5. Now you are good to investigate the application.
+
+> See more at: [Laravel documentation](https://laravel.com/docs/9.x/sail#debugging-with-xdebug).
+
