@@ -1,5 +1,7 @@
 # Project Documentation Standards
 
+This article introduces the standards of Laravel project documentation.
+
 You must make a documentation for each Laravel project, normally in `README.md` file at root path. A standard
 documentation of a Laravel project should include at least following section:
 
