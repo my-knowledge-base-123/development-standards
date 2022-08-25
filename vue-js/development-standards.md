@@ -206,34 +206,54 @@ A common file structure of assets **SHOULD** be following:
     <!-- Or Everywhere -->
     <my-component></my-component>
     ```
+- Component names **MUST NOT** be abbreviations.
 
 ### ## SFC (Single-file Component)
 
 - You **MUST** use `Composition API` to build components, while `<script setup>` is an optional.
 - You **MUST** declare the component name with `name` attribute.
 - You **MUST** define `prop` as detailed as possible (specifying at least prop type).
+- Prop names **MUST** use `camelCase` during declaration, but `kebab-case` in templates.
 - You **MUST** use `key` with `v-for`.
 - You **MUST NOT** use `v-if` with `v-for`
 
 ## State Management
 
-//TODO
+- Stores **MUST** be grouped up,
+  See [VueJS Project Sample](https://github.com/lifebyte-systems/lifebyte-web-vue-sample/tree/main/src/store).
+- Names of store files **MUST** have a suffix `.store`. e.g. `user.store.ts`
 
 ## Router
 
-//TODO
+- You **MUST** place routes under `/src/router/routes` by category.
+- Route names **MUST** be `kebab-case` and suffixed with `.route`. e.g. `vip-user.route.ts`.
+- You **MUST** add `name` attribute to each route, and **MUST** use route name for linking in `<router-link>`
+  or `router.push()`
+- You **SHOULD** consider to use nested routes while the segments of a URL corresponds to a certain structure of nested
+  components.
+- You **MUST** decouple navigation guards into directory `/src/router/guards`
+
+See [VueJS Project Sample](https://github.com/lifebyte-systems/lifebyte-web-vue-sample/tree/main/src/router).
 
 ## Requests & APIs
 
-//TODO
+- You **MUST** encapsulate Axios requests in `/src/http/request.ts`.
+- You **MUST** declare APIs by group under `/src/http/apis` directory.
+- API filenames **MUST** have a suffix `.api`. e.g. `user.api.ts`.
 
 ## Localisation
 
-//TODO
+- You **MUST** group translation files by language under `/src/i18n/lang` directory.
+- Language filenames **MUST** in `kebab-case`and **MUST** have a suffix `.lang`. e.g. `vip-user.api.ts`
 
 ## Styles
 
-For applications, styles in a top-level `App` component and in layout components may be global, but all other components
-should always be scoped.
-
-Component libraries, however, should prefer a class-based strategy instead of using the `scoped` attribute.
+- Styles in a top-level `App` component and in layout components **MAY** be global, but all other components **MUST**
+  always be scoped.
+- Component libraries, however, should prefer a class-based strategy instead of using the `scoped` attribute.
+- You **MUST** follow [BEM naming rule](http://getbem.com/introduction/) for custom class names.
+- To avoid conflicts with other style libraries, you **MUST** add a unique prefix to custom class names.
+  e.g. `.lb-my-class-name`.
+- If you are using Tailwind CSS, you **SHOULD** carefully read
+  its [documentation](https://tailwindcss.com/docs/using-with-preprocessors) in advance to make sure you will use it
+  correctly and efficiently.
