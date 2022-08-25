@@ -8,6 +8,14 @@
 [# Technology Stack](#-technology-stack)  
 [# Project Initialisation](#-project-initialisation)  
 [# Environment & Configurations](#-environment--configurations)
+[# Assets](#-assets)
+[# Hooks](#-hooks)
+[# Components](#-components)
+[# Store](#-store)
+[# Router](#-router)
+[# Requests & APIs](#-requests--apis)
+[# Localisation](#-localisation)
+[# Styles](#-styles)
 
 ## # Introduction
 
@@ -67,7 +75,7 @@ See [Vue.js Project Sample](https://github.com/lifebyte-systems/lifebyte-web-vue
 
 ## # Environment & Configurations
 
-### Config Layer
+### ## Config Layer
 
 It is always helpful to have different configuration values based on the environment where the application is running.
 Here is an example: As we all know, an environment variable can only be set as a string (or boolean). When we need to
@@ -86,22 +94,20 @@ Pros:
 - DRY: Process complex environment variables in config layer, avoid duplicated code.
 - Make code robust and flexible.
 
-### Naming Convention
+### ## Naming Convention
 
 - Environment variables in *.env* file **MUST** be named in `SCREAM_SNAKE_CASE` and prefixed with `VITE_`.
 - Config file names **MUST** be named in `kebab-case` and end with *.config.ts*.
 - Config variables **SHOULD** be named in `snake_case`.
 - You **MUST NOT** use abbreviation to name files.
 
-### Sample:
+### ## Sample
 
 See [Vue.js sample project](https://github.com/lifebyte-systems/lifebyte-web-vue-sample).
 
-<a name="assets"></a>
+## # Assets
 
-## Assets
-
-### What's In It
+### ## What's In It
 
 `/assets` directory keeps globally shared static data, including images, styling files (e.g. vendor styles, custom
 styles), shared documents (e.g. privacy policy PDF document), static data (e.g. country list JSON file), etc.
@@ -126,15 +132,13 @@ A common file structure of assets **SHOULD** be following:
         |-- static-data-2.js
 ```
 
-### Naming Convention
+### ## Naming Convention
 
 - An assets file **MUST** have a meaningful name that well describes its content.
 - The name **MUST** in `kebab-case`.
 - You **SHOULD NOT** use abbreviation for a filename.
 
-<a name="utilities-hooks"></a>
-
-## Hooks
+## # Hooks
 
 - A hook **MUST** be named in `camelCase` and starts with *use* (e.g. useWindowResize.ts)
 - You **SHOULD** create a hook carefully to avoid over-design.
@@ -144,7 +148,9 @@ A common file structure of assets **SHOULD** be following:
       functions `fetchProduct()`, `updateProduct()`and `deleteProduct()`)
       <a name="components"></a>
 
-## Components
+## # Components
+
+### ## Naming Convention
 
 - Component names **MUST** be in `PascalCase`. e.g. `MyComponent.vue`
 - Component names **MUST** be multi-word, expect for root `App` component, and built-in components provided by Vue, such
@@ -217,13 +223,13 @@ A common file structure of assets **SHOULD** be following:
 - You **MUST** use `key` with `v-for`.
 - You **MUST NOT** use `v-if` with `v-for`
 
-## State Management
+## # Store
 
 - Stores **MUST** be grouped up,
   See [VueJS Project Sample](https://github.com/lifebyte-systems/lifebyte-web-vue-sample/tree/main/src/store).
 - Names of store files **MUST** have a suffix `.store`. e.g. `user.store.ts`
 
-## Router
+## # Router
 
 - You **MUST** place routes under `/src/router/routes` by category.
 - Route names **MUST** be `kebab-case` and suffixed with `.route`. e.g. `vip-user.route.ts`.
@@ -235,18 +241,18 @@ A common file structure of assets **SHOULD** be following:
 
 See [VueJS Project Sample](https://github.com/lifebyte-systems/lifebyte-web-vue-sample/tree/main/src/router).
 
-## Requests & APIs
+## # Requests & APIs
 
 - You **MUST** encapsulate Axios requests in `/src/http/request.ts`.
 - You **MUST** declare APIs by group under `/src/http/apis` directory.
 - API filenames **MUST** have a suffix `.api`. e.g. `user.api.ts`.
 
-## Localisation
+## # Localisation
 
 - You **MUST** group translation files by language under `/src/i18n/lang` directory.
 - Language filenames **MUST** in `kebab-case`and **MUST** have a suffix `.lang`. e.g. `vip-user.api.ts`
 
-## Styles
+## # Styles
 
 - Styles in a top-level `App` component and in layout components **MAY** be global, but all other components **MUST**
   always be scoped.
