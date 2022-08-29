@@ -68,8 +68,8 @@ WEB-XXX #comment <type>(<scope>): <subject>
 
 4. If you need to do any updates on the `feature` branch, remember to fetch the code from remote `dev` branch and merge the latest code to the `feature` branch
 5. After passing the test, merge the `feature` branch to `dev` and delete the `feature` branch
-6. When it is ready to release, create a `release` branch based on `dev`. Update `ver.txt` file, add the version tag and publish the `release` branch
-7. Merge the `release` branch to the `main` branch. Then, merge `main` branch code to `dev` branch to keep them synchronized.
+6. When it is ready to release, create a `release` branch based on `dev`. Update `ver.txt` file and publish the `release` branch
+7. Merge the `release` branch to the `main` branch and tag with a **version number**(Same as the tag in ver.txt file). In addition, it should be merged back into `dev`. Then, the `release` branch will be deleted
    >For more details, please read [Release plan](../deployment/release-plan.md)
 
 > Learn more about Git at: [Learn Git](https://www.atlassian.com/git/tutorials/setting-up-a-repository)
