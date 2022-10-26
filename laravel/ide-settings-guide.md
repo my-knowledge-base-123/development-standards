@@ -75,9 +75,18 @@ Update composer scripts in `composer.json` to enable automation:
 
 1. Add `SAIL_XDEBUG_MODE=develop,debug,coverage` to `.env` file to configure Xdebug
 2. Restart Sail:
+
     ```shell
     sail up -d
     ```
+   
+3. Go to `Preferences > Debug`, click `validate`
+4. Select `Local Web Server and Shared Folder`
+5. Set `Path to create validation script` to `[your-project-root-path]/public`
+6. Set `Url to validation script` to `http://127.0.0.1` (add port if `APP_URL` env is set, e.g. `http://127.0.0.1:8000`)
+7. Run validation by clicking `Validate` button, than you will see this:
+
+    ![](../images/validate-xdebug.png)
 
 #### ### Debug on Chrome
 
